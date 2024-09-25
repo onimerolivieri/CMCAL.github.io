@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Bienvenida{% endblock %}
+
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bienvenida.css' %}">
+
+    <!-- Formulario de búsqueda -->
+    <h2>Buscar Vehículo</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Buscar</button>
+    </form>
+
+    <!-- Mensaje sobre la autorización del vehículo -->
+    {% if mensaje %}
+        <p>{{ mensaje }}</p>
+    {% endif %}
+
+    <!-- Contenedor para los botones -->
+    <div class="btn-container">
+        <!-- Botón para registrar vehículos -->
+        <a href="{% url 'registrar_vehiculo' %}" class="btn">Registrar Vehículo</a>
+        
+        <!-- Botón para ver vehículos registrados -->
+        <a href="{% url 'listar_vehiculos' %}" class="btn">Ver Vehículos Registrados</a>
+
+        <!-- Nuevo botón para ver funcionarios -->
+        <a href="{% url 'listar_funcionarios' %}" class="btn">Ver Funcionarios</a>
+    </div>
+
+    <!-- Tabla con los últimos 4 ingresos -->
+    <h2>Últimos 4 Ingresos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Vehículo</th>
+                <th>Fecha de Ingreso</th>
+                <th>Registrado Por</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ingreso in ultimos_ingresos %}
+                <tr>
+                    <td>{{ ingreso.vehiculo }}</td>
+                    <td>{{ ingreso.fecha_ingreso }}</td>
+                    <td>{{ ingreso.registrado_por }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">No hay ingresos registrados.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

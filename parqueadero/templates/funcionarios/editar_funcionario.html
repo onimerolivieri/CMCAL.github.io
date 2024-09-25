@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Editar Funcionario{% endblock %}
+
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/editar_funcionario.css' %}">
+
+    <h1>Editar Funcionario: {{ funcionario.nombre }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar Cambios</button>
+    </form>
+
+    <!-- Botón para cancelar -->
+    <a href="{% url 'listar_funcionarios' %}">Cancelar</a>
+{% endblock %}

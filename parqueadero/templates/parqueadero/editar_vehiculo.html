@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Editar Vehículo{% endblock %}
+
+{% block content %}
+    <h1>Editar Vehículo</h1>
+    
+    <!-- Botón de volver -->
+    <a href="{% url 'listar_vehiculos' %}" style="display: inline-block; padding: 10px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; margin-bottom: 20px;">Volver</a>
+    
+    <!-- Formulario de edición de vehículo -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar Cambios</button>
+    </form>
+{% endblock %}

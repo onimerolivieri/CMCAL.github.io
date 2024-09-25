@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Eliminar Funcionario{% endblock %}
+
+{% block content %}
+    <h1>Eliminar Funcionario</h1>
+    <p>¿Estás seguro de que deseas eliminar a {{ funcionario.nombre }}?</p>
+    
+    <!-- Formulario para confirmar eliminación -->
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" style="padding: 10px; background-color: #dc3545; color: white; border: none; border-radius: 5px;">Eliminar</button>
+        <a href="{% url 'listar_funcionarios' %}" style="display: inline-block; padding: 10px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">Cancelar</a>
+    </form>
+{% endblock %}

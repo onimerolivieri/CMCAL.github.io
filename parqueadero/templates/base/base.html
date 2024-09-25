@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi Aplicación{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background-color: #f0f0f0;">
+            <div>
+                <span>Parqueadero CMCAL</span>
+            </div>
+            <div style="display: flex; align-items: center;">
+                {% if user.is_authenticated %}
+                    <span style="margin-right: 20px;">Bienvenido, {{ user.username }}</span>
+                    <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" style="padding: 5px 10px;">Cerrar Sesión</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}">Iniciar Sesión</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Contenido específico de la página aquí -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Parqueadero CMCAL</p>
+    </footer>
+</body>
+</html>

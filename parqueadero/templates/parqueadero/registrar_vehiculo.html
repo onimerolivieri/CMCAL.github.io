@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Registrar Vehículo{% endblock %}
+
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/register_vehicle.css' %}">
+    
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 20px;">Registrar Vehículo</h2>
+
+        <!-- Formulario de registro de vehículo -->
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                {{ form.propietario.label_tag }}<br>
+                {{ form.propietario }}
+            </div>
+            <div>
+                {{ form.placas.label_tag }}<br>
+                {{ form.placas }}
+            </div>
+            <div>
+                {{ form.marca.label_tag }}<br>
+                {{ form.marca }}
+            </div>
+            <div>
+                {{ form.color.label_tag }}<br>
+                {{ form.color }}
+            </div>
+            <div>
+                {{ form.esta_autorizado.label_tag }}<br>
+                {{ form.esta_autorizado }}
+            </div>
+            <button type="submit">Registrar</button>
+        </form>
+
+        <!-- Botón de volver -->
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="{% url 'bienvenida' %}" class="btn">Volver</a>
+        </div>
+    </div>
+{% endblock %}
